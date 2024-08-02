@@ -34,6 +34,11 @@ dependencies {
     implementation 'io.quarkus:quarkus-smallrye-reactive-messaging'
     implementation 'io.quarkus:quarkus-hibernate-orm-panache'
 
+    //aws
+    implementation 'io.quarkus:quarkus-amazon-sqs'
+    implementation 'io.quarkus:quarkus-smallrye-jwt'
+
+
     // tests implementations
     testImplementation 'com.github.database-rider:rider-core:1.44.0'
     testImplementation 'com.github.database-rider:rider-junit5:1.44.0'
