@@ -16,21 +16,61 @@
             </column>
             <column name="description" type="VARCHAR(1024)"/>
             <column name="dueDate" type="DATE"/>
+
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="Gabriel">
+        <createTable tableName="User">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="username" type="VARCHAR(255)" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="points" type="INT">
+                <constraints nullable="false"/>
+            </column>
+
         </createTable>
     </changeSet>
 
-    <changeSet id="2" author="Gabriel">
+    <changeSet id="3" author="Gabriel">
         <createTable tableName="Transaction">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
+            <column name="user_id" type="BIGINT" autoIncrement="true"/>
             <column name="location" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
             <column name="quantity" type="NUMBER"/>
             <column name="currency" type="VARCHAR(50)"/>
             <column name="merchant_category_code" type="VARCHAR(255)"/>
+
         </createTable>
     </changeSet>
+
+    <changeSet id="5" author="Gabriel">
+        <insert tableName="User">
+            <column name="username" value="testuser"/>
+            <column name="password" value="testpassword"/>
+            <column name="points" valueNumeric="0"/>
+        </insert>
+    </changeSet>
+
+
+
+    <!-- Add foreign key constraint to the Transaction table to link it with User table -->
+    <changeSet id="4" author="Gabriel">
+        <addForeignKeyConstraint baseTableName="Transaction"
+                                 baseColumnNames="user_id"
+                                 constraintName="fk_transaction_user"
+                                 referencedTableName="User"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
 
 </databaseChangeLog>
