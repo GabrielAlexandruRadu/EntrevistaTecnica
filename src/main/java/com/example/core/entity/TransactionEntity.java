@@ -24,16 +24,22 @@ public class TransactionEntity {
     @JsonProperty("merchant_category_code")
     private String merchantCategoryCode;
 
+
+
+    @Column(name = "user_id")
+    private Long userId;
+
     // Default constructor
     public TransactionEntity() {}
 
     // Parameterized constructor
-    public TransactionEntity(Long id, String location, int quantity, String currency, String merchantCategoryCode) {
+    public TransactionEntity(Long id, String location, int quantity, String currency, String merchantCategoryCode, Long userId) {
         this.id = id;
         this.location = location;
         this.quantity = quantity;
         this.currency = currency;
         this.merchantCategoryCode = merchantCategoryCode;
+        this.userId = userId;
     }
 
 
@@ -79,5 +85,13 @@ public class TransactionEntity {
 
     public void setCurrency(String currency) {
         this.currency = currency;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

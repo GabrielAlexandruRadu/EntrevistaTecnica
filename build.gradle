@@ -9,6 +9,7 @@ version '1.0.0-SNAPSHOT'
 repositories {
     mavenCentral()
     mavenLocal()
+    maven { url "https://maven.quarkus.io" }
 }
 
 dependencies {
@@ -35,7 +36,7 @@ dependencies {
     implementation 'io.quarkus:quarkus-hibernate-orm-panache'
 
     //aws
-    implementation 'io.quarkus:quarkus-amazon-sqs'
+
     implementation 'io.quarkus:quarkus-smallrye-jwt'
 
 

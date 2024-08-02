@@ -11,6 +11,6 @@ public interface TransactionMapper {
 
     TransactionMapper INSTANCE = Mappers.getMapper(TransactionMapper.class);
 
-    TransactionEntity toEntity(Transaction domain);
+    TransactionEntity toEntity(Transaction transaction);
     Transaction toDomain(TransactionEntity entity);
 }

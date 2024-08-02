@@ -39,8 +39,8 @@ public class TransactionServiceTest {
     @Test
     void givenTransactionsWhenGetTotalTransactionResponseThenExpectCorrectResponse() {
 
-        TransactionEntity entity1 = new TransactionEntity(1L, "New York", 50, "USD", "1234");
-        TransactionEntity entity2 = new TransactionEntity(2L, "Los Angeles", 100, "USD", "5678");
+        TransactionEntity entity1 = new TransactionEntity(1L, "New York", 50, "USD", "1234",12L);
+        TransactionEntity entity2 = new TransactionEntity(2L, "Los Angeles", 100, "USD", "5678" ,13L);
 
         // Create a mock PanacheQuery
         PanacheQuery<TransactionEntity> mockQuery = mock(PanacheQuery.class);
@@ -62,6 +62,7 @@ public class TransactionServiceTest {
 
         Transaction transaction1 = transactions.get(0);
         assertEquals(1, transaction1.getId());
+        assertEquals(12, transaction1.getUserId());
         assertEquals("New York", transaction1.getLocation());
         assertEquals(50, transaction1.getQuantity());
         assertEquals("USD", transaction1.getCurrency());
@@ -69,6 +70,7 @@ public class TransactionServiceTest {
 
         Transaction transaction2 = transactions.get(1);
         assertEquals(2, transaction2.getId());
+        assertEquals(13, transaction1.getUserId());
         assertEquals("Los Angeles", transaction2.getLocation());
         assertEquals(100, transaction2.getQuantity());
         assertEquals("USD", transaction2.getCurrency());
