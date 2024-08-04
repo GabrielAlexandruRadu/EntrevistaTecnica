@@ -6,7 +6,7 @@ import org.mapstruct.factory.Mappers;
 import com.example.core.entity.TransactionEntity;
 
 
-@Mapper
+@Mapper(componentModel = "jakarta")
 public interface TransactionMapper {
 
     TransactionMapper INSTANCE = Mappers.getMapper(TransactionMapper.class);
