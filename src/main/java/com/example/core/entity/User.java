@@ -1,14 +1,16 @@
 package com.example.core.entity;
 
-
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 
-@Entity
-@Table( name = "\"User\"")
+import java.util.List;
 
+@Entity(name ="Clients")
+public class User extends PanacheEntityBase {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Long id;
 
-public class User extends PanacheEntity {
     @Column(unique = true)
     public String username;
 
@@ -16,8 +18,18 @@ public class User extends PanacheEntity {
 
     public int points;
 
+//    @OneToMany(mappedBy = "user")  //dependencia circular
+//    public List<PointsHistory> pointsHistories;
 
+    // Getters and Setters
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public int getPoints() {
         return points;
@@ -42,5 +54,4 @@ public class User extends PanacheEntity {
     public void setUsername(String username) {
         this.username = username;
     }
-
 }

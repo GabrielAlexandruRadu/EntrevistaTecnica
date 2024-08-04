@@ -70,7 +70,7 @@ public class TransactionServiceTest {
 
         Transaction transaction2 = transactions.get(1);
         assertEquals(2, transaction2.getId());
-        assertEquals(13, transaction1.getUserId());
+        assertEquals(13, transaction2.getUserId());
         assertEquals("Los Angeles", transaction2.getLocation());
         assertEquals(100, transaction2.getQuantity());
         assertEquals("USD", transaction2.getCurrency());

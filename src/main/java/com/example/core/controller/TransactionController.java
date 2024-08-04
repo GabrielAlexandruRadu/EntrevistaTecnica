@@ -2,6 +2,7 @@ package com.example.core.controller;
 
 import com.example.core.DTO.TotalTransactionResponse;
 import com.example.core.domain.Transaction;
+import com.example.core.service.PointsService;
 import com.example.core.service.TransactionService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
@@ -17,19 +18,21 @@ public class TransactionController {
     @Inject
     TransactionService transactionService;
 
+    @Inject
+    PointsService pointsService;
+
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-
     public Response createTransaction (Transaction transaction) {
         transactionService.save(transaction);
+        pointsService.processTransaction(transaction);
         return Response.status(Response.Status.CREATED).entity(transaction).build();
     }
 
     @GET
     @Path("/{id}")
     @Produces({MediaType.APPLICATION_JSON})
-
     public Response getTransaction(@PathParam("id") Long id) {
         Optional<Transaction> transaction = transactionService.findById(id);
         return transaction

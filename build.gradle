@@ -18,6 +18,9 @@ dependencies {
     implementation 'org.mapstruct:mapstruct:1.5.3.Final'
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
 
+    // CDI API for dependency injection
+    implementation 'jakarta.enterprise:jakarta.enterprise.cdi-api:2.0.2'
+
     // For Lombok
     compileOnly 'org.projectlombok:lombok:1.18.20'
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
@@ -36,7 +39,6 @@ dependencies {
     implementation 'io.quarkus:quarkus-hibernate-orm-panache'
 
     //aws
-
     implementation 'io.quarkus:quarkus-smallrye-jwt'
 
 
@@ -51,6 +53,7 @@ dependencies {
     testImplementation 'org.mockito:mockito-junit-jupiter:4.6.1'
     testImplementation 'io.quarkus:quarkus-junit5-mockito:2.11.0.Final'
     testImplementation 'jakarta.transaction:jakarta.transaction-api:2.0.1'
+    testImplementation 'com.h2database:h2:2.1.214'
 
 }
 
@@ -58,6 +61,11 @@ dependencies {
 java {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
+}
+
+compileJava {
+    options.annotationProcessorPath = configurations.annotationProcessor
+    options.compilerArgs += '-Amapstruct.defaultComponentModel=jakarta'
 }
 
 test {

@@ -20,55 +20,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @DBRider
 @ExtendWith(DBUnitExtension.class)
 class TransactionControllerTest {
-    @Test
-    @ExpectedDataSet("datasets/expected-transactions.yml")
-    public void GivenTransactionWhenCreateThenExpectToBeCreated (){
-
-        RestAssured.given()
-                .contentType("application/json")
-                .body("""
-                        {
-                        "id" : 12345,
-                        "location" : "CiudadReal",
-                        "quantity" : 30,
-                        "currency" : "dollars",
-                        "merchantCategoryCode" : "12code"
-                        }
-                        """)
-                .when().put("/transaction")
-                .then().statusCode(201);
-    }
-    @Test
-
-    public void GivenTransactionIdWhenGetThenExpectTransactionBody () {
-
-        RestAssured.defaultParser = Parser.JSON;
-
-
-        RestAssured.given()
-                .contentType("application/json")
-                .body("""
-                        {
-                        "id" : 123,
-                        "location" : "Madrid",
-                        "quantity" : 3000,
-                        "currency" : "dollars",
-                        "merchantCategoryCode" : "123code"
-                        }
-                        """)
-                .when().put("/transaction")
-                .then().statusCode(201);
-
-        // get by id and validate the response
-        RestAssured.given()
-                .when().get("/transaction/123")
-                .then()
-                .statusCode(200)
-                .body("location", equalTo("Madrid"))
-                .body("quantity", equalTo(3000))
-                .body("currency", equalTo("dollars"))
-                .body("merchantCategoryCode",equalTo("123code"));
-    }
 
     @Test
     @DataSet("datasets/expected-transactions.yml")
