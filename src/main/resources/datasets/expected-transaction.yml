@@ -1,0 +1,6 @@
+TRANSACTIONS:
+  - ID: 1
+    LOCATION: "New York"
+    AMOUNT: 100
+    CURRENCY: "USD"
+    MERCHANT_CATEGORY_CODE: "123code"

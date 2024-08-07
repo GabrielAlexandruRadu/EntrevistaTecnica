@@ -1,5 +1,0 @@
-Clients:
-  - id: 1
-    username: "testuser"
-    password: "testpassword"
-    points: 100
